@@ -44,7 +44,7 @@ jobs:
       with:
         image: panseebadry/iti_dockerlab
         registry: docker.io
-        dockerfile: iti_dockerLab/Dockerfile
+        dockerfile: Dockerfile
         username: "${{ secrets.HUB_USERNAME }}"
         password: "${{ secrets.HUB_PASSWORD }}"
         tags: latest
