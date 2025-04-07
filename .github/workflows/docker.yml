@@ -23,12 +23,15 @@ jobs:
         with:
           node-version: '14'
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: ./iti_dockerLab  # Ensure this points to your repo's folder
 
-      # Build the app (assuming there's a build step defined in package.json)
-      - name: Build the app
-        run: npm run build # Ensure this matches the build script in your package.json
+      # Run the server
+      - name: Run the server
+        run: npm start
+        working-directory: ./iti_dockerLab  # Ensure this points to your repo's folder
 
   deliverit:
     needs: build
@@ -49,4 +52,5 @@ jobs:
           username: "${{ secrets.HUB_USERNAME }}"
           password: "${{ secrets.HUB_PASSWORD }}"
           tags: latest
+        working-directory: ./iti_dockerLab  # Ensure this points to your repo's folder
 
