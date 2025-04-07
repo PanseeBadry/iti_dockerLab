@@ -40,7 +40,7 @@ jobs:
     - name: Build Docker image and push to Hub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: panseeBadry/iti_dockerLab # Replace with your Docker Hub username and repo name
+        image: panseeBadry/iti_dockerlab # Replace with your Docker Hub username and repo name
         registry: docker.io
         dockerfile: Dockerfile # Assuming Dockerfile is at the root of your repo
         username: "${{ secrets.HUB_USERNAME }}"
