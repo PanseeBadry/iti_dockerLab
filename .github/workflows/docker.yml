@@ -1,4 +1,4 @@
-name: ITO OS Web Application
+name: ITO OS Web application
 
 on:
   push:
@@ -14,42 +14,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
-      - uses: actions/checkout@v3
+    - name: Check out code
+      uses: actions/checkout@v3
 
-      # Set up Node.js and install dependencies
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
+      # Set up Node.js (for npm install or any Node-related tasks)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
 
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./iti_dockerLab  # Ensure this points to your repo's folder
+    - name: Install dependencies
+      run: npm install
 
-      # Run the server
-      - name: Run the server
-        run: npm start
-        working-directory: ./iti_dockerLab  # Ensure this points to your repo's folder
+    - name: Build the app (if needed)
+      run: npm run build  # Add your build command here if needed (e.g., "npm run build")
 
   deliverit:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code again in this job
-      - name: Check out code
-        uses: actions/checkout@v3
+    - name: Check out code
+      uses: actions/checkout@v3
 
-      # Build and push Docker image to Docker Hub
-      - name: Build Docker image and push to Hub
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: panseeBadry/iti_dockerLab # Replace with your Docker Hub username and repo name
-          registry: docker.io
-          dockerfile: Dockerfile # Assuming Dockerfile is at the root of your repo
-          username: "${{ secrets.HUB_USERNAME }}"
-          password: "${{ secrets.HUB_PASSWORD }}"
-          tags: latest
-        
+    - name: Build Docker image and push to Hub
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: panseeBadry/iti_dockerLab # Replace with your Docker Hub username and repo name
+        registry: docker.io
+        dockerfile: Dockerfile # Assuming Dockerfile is at the root of your repo
+        username: "${{ secrets.HUB_USERNAME }}"
+        password: "${{ secrets.HUB_PASSWORD }}"
+        tags: latest
+
