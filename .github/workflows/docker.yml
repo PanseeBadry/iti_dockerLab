@@ -41,14 +41,14 @@ jobs:
 
     - name: Build Docker image and push to Hub
       uses: mr-smithers-excellent/docker-build-push@v6
-       with:
-           image: panseebadry/iti_dockerlab
-            registry: docker.io
-            dockerfile: iti_dockerLab/Dockerfile
-             username: "${{ secrets.HUB_USERNAME }}"
-             password: "${{ secrets.HUB_PASSWORD }}"
-          tags: latest
-    buildContext: ./iti_dockerLab
+      with:
+        image: panseebadry/iti_dockerlab
+        registry: docker.io
+        dockerfile: iti_dockerLab/Dockerfile
+        username: "${{ secrets.HUB_USERNAME }}"
+        password: "${{ secrets.HUB_PASSWORD }}"
+        tags: latest
+        buildContext: ./iti_dockerLab
 
         
      
